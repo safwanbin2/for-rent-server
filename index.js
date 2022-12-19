@@ -69,6 +69,16 @@ app.get('/jwt', async (req, res) => {
         console.log(error)
     }
 })
+// adding new car
+app.post('/allcars', verifyJWT, async (req, res) => {
+    try {
+        const newCar = req.body;
+        const result = await CarsCollection.insertOne(newCar);
+        res.send(result);
+    } catch (error) {
+        console.log(error)
+    }
+})
 // getting all the cars
 app.get('/allcars', async (req, res) => {
     try {
