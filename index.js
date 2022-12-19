@@ -159,7 +159,17 @@ app.get('/bookings', verifyJWT, async (req, res) => {
         console.log(error)
     }
 })
-
+// deleting booking 
+app.delete('/bookings/:id', verifyJWT, async (req, res) => {
+    try {
+        const id = req.params.id;
+        const filter = { _id: ObjectId(id) };
+        const result = await BookingCollection.deleteOne(filter);
+        res.send(result);
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 
 
